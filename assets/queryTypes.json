@@ -1,0 +1,9 @@
+[
+  {"type":"Specimens", "parameters":[
+    "family","subfamily","genus","species","code","country","habitat","type","georeferenced",
+    "coords"
+  ]},
+  {"type":"GeoSpecimens", "parameters":[
+    "coords", "radius", "limit", "offset", "distinct"
+  ]}
+]
