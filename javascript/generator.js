@@ -275,6 +275,16 @@ var antData = [ {"countrys":{}} ,{"countrys":{}}, {"countrys":{}}, {"countrys":{
     {"countrys":{}}, {"countrys":{}}, {"countrys":{}}, {"countrys":{}} ,{"countrys":{}} ,{"countrys":{}}];
 
 
+function getDeviation(thisDates, thisTotal) {
+    var acum = 0;
+    for(var i = 0 ; i < 12; i++){
+        // console.log(thisDates[i] - mean);
+        acum += ((thisDates[i] - mean) * (thisDates[i] - mean));
+    }
+    // console.log(acum);
+    return Math.sqrt((acum/11));
+}
+
 function giveMonthFreq(){
     for (var country in countrys){
         myUrl = url + countrys[country][0];
@@ -282,15 +292,25 @@ function giveMonthFreq(){
         jQuery.ajaxSetup({
             async:false
         });
+        var self = this;
         Consulta = jQuery.get(myUrl, function (data) {//myResult = data;
             myDates = getJsonDate(data);
             thisDates = myDates[0];
             thisTotal = myDates[1];
             thisCountry = data["metaData"]["parameters"][0]["country"];
+            mean = thisTotal/12;
+            deviation = getDeviation(thisDates,thisTotal,mean);
             for (var index = 0; index < antData.length; index++){
+                // console.log(thisDates[index]);
+                // console.log(mean);
+                // console.log(deviation);
+                var percentage = jStat.normal.cdf(thisDates[index],mean,deviation);
+                // console.log(percentage);
                 // console.log(index);
                 antData[index]["countrys"][thisCountry] = {"name" : thisCountry, "qty": thisDates[index]
-                    , "abbr" : countrys[country][1], "total" : thisTotal};
+                    , "abbr" : countrys[country][1], "total" : thisTotal,
+                    "percentage" : percentage
+                };
             }
             // document.write(JSON.stringify(antData));
             // document.write("MACHIKAMACHIKAMACHIKA\n\n\n\n");
@@ -301,7 +321,7 @@ function giveMonthFreq(){
 
 function printMonthFreq(){
     giveMonthFreq();
-    console.log("AQUITA");
+    // console.log("AQUITA");
     console.log(antData);
     document.write(JSON.stringify(antData));
     // giveMonthFreq( function()
