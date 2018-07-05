@@ -10,9 +10,10 @@
           crossorigin=""/>
     <link rel="stylesheet" href="css/dvf.css" type="text/css" media="screen" />
     <link rel="stylesheet" href="css/main.css" type="text/css" media="screen" />
-    <link rel="stylesheet" href="css/ui.css" type="text/css" media="screen" />
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/bootstrap-responsive.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/ui.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="css/slicer.css" type="text/css" media="screen"/>
     <script type="text/javascript" src="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.js"></script>
     <script src="http://cdn.jsdelivr.net/npm/jstat@latest/dist/jstat.min.js"></script>
     <!-- Make sure you put this AFTER Leaflet's CSS -->
@@ -22,6 +23,7 @@
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
 
     <script src="assets/leaflet-dvf.js"></script>
     <script type="text/javascript" src="http://maps.stamen.com/js/tile.stamen.js?v1.2.4"></script>
@@ -35,18 +37,9 @@
 
 <div class="navbar navbar-inverse">
     <div class="navbar-inner">
-        <div class="container">
-            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </a>
-            <a class="brand" href="#">Color Functions</a>
-            <div class="nav-collapse collapse">
-                <ul class="nav">
-                    <li class="active"><a href="http://humangeo.github.io/leaflet-dvf">Home</a></li>
-                </ul>
-            </div><!--/.nav-collapse -->
+        <div class="container-fluid">
+            <h4 class="brand">Alates Hunt!</h4>
+            <img id="antman" src="assets/antman.png" width="50px" height="50px">
         </div>
     </div>
 </div>
@@ -54,44 +47,37 @@
 <div class="container-fluid">
     <div class="row-fluid">
         <div id="map" class="span9"></div>
-        <div id="legend" class="span3"></div>
+        <div id="legend" class="span2"></div>
     </div>
 </div>
-<!--<div id="mapid"></div>-->
-<!--<select id="country" onchange="changeFunc(id);">-->
-    <!--<option value="Peru">Peru</option>-->
-    <!--<option value="Argentina">Argentina</option>-->
-    <!--<option value="Chile">Chile</option>-->
-    <!--<option value="United States">United States</option>-->
-<!--</select>-->
 
-<!--<select id="genus" onchange="changeFunc(id);">-->
-    <!--<option value="Tetramorium">Tetramorium</option>-->
-    <!--<option value="Technomyrmex">Technomyrmex</option>-->
-    <!--<option value="Chile">Chile</option>-->
-<!--</select>-->
+<div class="container-fluid">
+    <div class="row-fluid ">
+        <div id="timer">
+            <div class="range">
+                <input type="range" min="1" max="12" steps="1" value="1">
+            </div>
+            <ul class="range-labels">
+                <li class="active selected">Enero</li>
+                <li>Febrero</li>
+                <li>Marzo</li>
+                <li>Abril</li>
+                <li>Mayo</li>
+                <li>Junio</li>
+                <li>Julio</li>
+                <li>Agosto</li>
+                <li>Septiembre</li>
+                <li>Octubre</li>
+                <li>Noviembre</li>
+                <li>Diciembre</li>
+            </ul>
+        </div>
+        <!--<div id="timer"></div>-->
+    </div>
+</div>
 
 
-<!--<select id="caste" onchange="changeFunc(id);">-->
-    <!--<option value="">Worker</option>-->
-    <!--<option value="queen">Queen</option>-->
-<!--</select>-->
-
-<select id="month" onchange="applyColor(id);">
-    <option value="0">Enero</option>
-    <option value="1">Febrero</option>
-    <option value="2">Marzo</option>
-    <option value="3">Abril</option>
-    <option value="4">Mayo</option>
-    <option value="5">Junio</option>
-    <option value="6">Julio</option>
-    <option value="7">Agosto</option>
-    <option value="8">Setiembre</option>
-    <option value="9">Octubre</option>
-    <option value="10">Noviembre</option>
-    <option value="11">Diciembre</option>
-</select>
-
+<!--<div id="timer">.bg-primary</div>-->
 
 
 <!--<button onclick="dameQuery()">Buscar</button>-->
@@ -99,6 +85,7 @@
 <script src="javascript/markers.js"></script>
 <script src="javascript/query.js"></script>
 <script src="javascript/fronteo.js"></script>
+<script src="javascript/slicer.js"></script>
 <!--<script src="javascript/generator.js"></script>-->
 <!--<script src="javascript/map.js"></script>-->
 
